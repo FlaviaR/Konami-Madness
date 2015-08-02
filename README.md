@@ -8,8 +8,11 @@ For best results, add the following div to your html page:
 &lt;/div&gt;
 </code></pre>
 
-This will create a div that covers your entire screen, allowing the obnoxious images to pop up without overflowing onto other page elements.
+This will create a div that covers your entire screen, allowing the obnoxious images to pop up without overflowing onto other page elements. <br>
 <b>NOTE</b>: Alaways make sure to include "pointer-events: none" as this will allow you to continue interacting with your website normally even with a superimposed div.
+
+The secret code uses ASCII characters to interpret the user's input. In my case, my secret code is 'flavs' which translates to 7076658683.<br>
+For more information on how to translate your desired code to ASCII, visit: https://simple.wikipedia.org/wiki/ASCII
 
 TO DO: 
  - fix position generation of each div (reduce overflow out of screen)
