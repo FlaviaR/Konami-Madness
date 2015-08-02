@@ -22,7 +22,7 @@ $(document).keyup(function(e) {
     check_input();
 });
 
-//generates random values
+//generates random values for the angle rotations and image position
 function randomize(){
     randImg = Math.round(Math.random()*6);
     randRot = Math.round(Math.random()*80);
@@ -47,7 +47,7 @@ function checkResult(){
 }
 
 //Creates a div to contain the image
-//This div is then appended to the given div
+//This div is then appended to the div "toAppend"
 function createDiv(toAppend){
     var div = document.createElement("div");
     $(div).attr('id', 'secret' + count);
@@ -63,7 +63,7 @@ function createDiv(toAppend){
     else divGrow.style.textAlign = "left";
 }
 
-//If the user input is equal to our secret code, generate random values, and append our funky images
+//If the user input is equal to our secret code, generate random values, and append our funky images to our website
 function check_input() {
     if(input == secret) {
         randomize();
