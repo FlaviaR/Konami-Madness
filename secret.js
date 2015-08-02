@@ -1,4 +1,4 @@
-//This little js file will append images in random spots/rotations of a given div when the secret code is typed by the user. 
+//This little js file will append images in random spots of a given div when the secret code is typed by the user. 
 var secret = "7076658683"; //secret code -> flavs
 var input = ""; //user input
 var timer; 
@@ -43,15 +43,15 @@ function checkResult(){
 
 //Creates a div to contain the image
 //This div is then appended to the given div
-function createDiv(){
+function createDiv(toAppend){
     var div = document.createElement("div");
     $(div).attr('id', 'secret' + count);
     $(div).offset({ top: randTop, left: randLeft });
-    $('#secretAppend').append(div); //where we're appending our image to
+    $(toAppend).append(div); //where we're appending our image to
     var id = $(div).attr('id');
     var divGrow = document.getElementById(id);
     divGrow.innerHTML = "<img src = '" + img.src + "'>";
-    document.getElementById(id).style.WebkitTransform = "rotate("+randRot+"deg)"; 
+    divGrow.style.WebkitTransform = "rotate("+randRot+"deg)"; 
 }
 
 //If the user input is equal to our secret code, generate random values, and append our funky images
@@ -60,6 +60,6 @@ function check_input() {
         randomize();
         checkResult();
         count++;
-        createDiv();
+        createDiv("#secretAppend"); //where to append images
     }
 }
