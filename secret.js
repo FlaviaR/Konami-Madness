@@ -9,7 +9,8 @@ var randRot; //keeps track of the generated rotation
 var randTop; //keeps track of the top pos
 var randLeft; //keeps track of the left pos
 var count = 0; //a counter used for the div ids
-var debug = false;
+var debug = true;
+var toPrint = "";
 
 //Keeps track of user input
 $(document).keyup(function(e) {
@@ -23,11 +24,15 @@ $(document).keyup(function(e) {
 
 //generates random values
 function randomize(){
-   randImg = Math.round(Math.random()*6);
-   randRot = Math.round(Math.random()*100);
-   if (randRot % 2 == 0) randRot*=(-1);
-   randLeft = Math.round(Math.random()*100);
-   randTop = Math.round(Math.random()*100);
+    randImg = Math.round(Math.random()*6);
+    randRot = Math.round(Math.random()*80);
+    if (randRot % 2 == 0) randRot*=(-1);
+    randLeft = Math.round(Math.random()*300);
+    randTop = Math.round(Math.random()*150);
+    if (debug) toPrint += "randLeft: " + randLeft + "\n";
+    if (debug) toPrint += "randTop: " + randTop + "\n";
+    if (debug) toPrint += "rotation: " + randRot + "\n";
+
 }
 
 //We add new images depending on the generated number
@@ -46,12 +51,17 @@ function checkResult(){
 function createDiv(toAppend){
     var div = document.createElement("div");
     $(div).attr('id', 'secret' + count);
-    $(div).offset({ top: randTop, left: randLeft });
     $(toAppend).append(div); //where we're appending our image to
     var id = $(div).attr('id');
     var divGrow = document.getElementById(id);
     divGrow.innerHTML = "<img src = '" + img.src + "'>";
-    divGrow.style.WebkitTransform = "rotate("+randRot+"deg)"; 
+    divGrow.style.marginLeft = randLeft+"px";
+    divGrow.style.marginTop = randTop+"px";
+    divGrow.style.WebkitTransform = "rotate("+randRot+"deg)";
+    divGrow.style.zIndex = 10;
+    divGrow.style.width = "1000px";
+    if (randRot % 2 == 0) divGrow.style.textAlign = "center";
+    else divGrow.style.textAlign = "left";
 }
 
 //If the user input is equal to our secret code, generate random values, and append our funky images
@@ -61,5 +71,6 @@ function check_input() {
         checkResult();
         count++;
         createDiv("#secretAppend"); //where to append images
+        if (debug) alert (toPrint);
     }
 }
