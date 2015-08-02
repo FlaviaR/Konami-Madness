@@ -9,7 +9,7 @@ var randRot; //keeps track of the generated rotation
 var randTop; //keeps track of the top pos
 var randLeft; //keeps track of the left pos
 var count = 0; //a counter used for the div ids
-var debug = true;
+var debug = false;
 var toPrint = "";
 
 //Keeps track of user input
@@ -59,7 +59,6 @@ function createDiv(toAppend){
     divGrow.style.marginTop = randTop+"px";
     divGrow.style.WebkitTransform = "rotate("+randRot+"deg)";
     divGrow.style.zIndex = 10;
-    divGrow.style.width = "1000px";
     if (randRot % 2 == 0) divGrow.style.textAlign = "center";
     else divGrow.style.textAlign = "left";
 }
