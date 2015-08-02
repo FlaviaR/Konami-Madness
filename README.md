@@ -4,8 +4,7 @@
 This code was initially added to flavulous.com and is still under development.
 
 For best results, add the following div to your html page:
-<pre><code>&lt;div id = "secretAppend" style = "position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:1000;">&gt;
-
+<pre><code>&lt;div id = "secretAppend" style = "position:fixed; width:100%; height:100%; top:0px; left:0px; z-index:1000;"&gt;
 &lt;/div&gt;
 </code></pre>
 
