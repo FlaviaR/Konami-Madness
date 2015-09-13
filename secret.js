@@ -26,9 +26,10 @@ $(document).keyup(function(e) {
 function randomize(){
     randImg = Math.round(Math.random()*6);
     randRot = Math.round(Math.random()*80);
-    if (randRot % 2 == 0) randRot*=(-1);
-    randLeft = Math.round(Math.random()*300);
-    randTop = Math.round(Math.random()*150);
+    if (randRot % 2 == 0) randRot*=(-1); //cw or ccw
+    else if (randRot % 3 == 0) randRot = 0;
+    randLeft = Math.round(Math.random()*window.innerWidth); //this also does some cool sizing
+    randTop = Math.round(Math.random()*window.innerHeight);
     if (debug) toPrint += "randLeft: " + randLeft + "\n";
     if (debug) toPrint += "randTop: " + randTop + "\n";
     if (debug) toPrint += "rotation: " + randRot + "\n";
@@ -46,21 +47,50 @@ function checkResult(){
 
 }
 
+//make a div dissapear after some time
+function setTimer(id){
+        setTimeout(function(){$('#'+id).fadeOut();}, 7000); //we <3 jquery
+}
+
+
+//perform random animations on a div
+function animate(id){
+    var rand = Math.round(Math.random()*3);
+    if (rand == 1) document.getElementById(id).className = "bounce";
+    else if (rand == 32) document.getElementById(id).className = "pulse";
+    else document.getElementById(id).className = "shake";
+}
+
+//function timer(id){
+//    alert(id);
+//    setTimeout(function(){document.getElementById(id).style.display = "none";}, 1200);
+//}
+
 //Creates a div to contain the image
 //This div is then appended to the div "toAppend"
 function createDiv(toAppend){
+    var id = 'secret' + count;
     var div = document.createElement("div");
-    $(div).attr('id', 'secret' + count);
+    
+    $(div).attr('id', id);
     $(toAppend).append(div); //where we're appending our image to
+    
     var id = $(div).attr('id');
     var divGrow = document.getElementById(id);
+    
     divGrow.innerHTML = "<img src = '" + img.src + "'>";
     divGrow.style.marginLeft = randLeft+"px";
     divGrow.style.marginTop = randTop+"px";
-    divGrow.style.WebkitTransform = "rotate("+randRot+"deg)";
+    
+    animate(id);
+    
+    if (divGrow.className != "bounce") divGrow.style.WebkitTransform = "rotate("+randRot+"deg)";
     divGrow.style.zIndex = 10;
-    if (randRot % 2 == 0) divGrow.style.textAlign = "center";
-    else divGrow.style.textAlign = "left";
+    if (randRot % 2 == 0 || randRot == 0) divGrow.style.textAlign = "center";
+    else divGrow.style.textAlign = "right";
+    divGrow.style.position = "fixed";
+    
+    setTimer(id);
 }
 
 //If the user input is equal to our secret code, generate random values, and append our funky images to our website
