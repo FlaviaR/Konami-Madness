@@ -49,7 +49,14 @@ function checkResult(){
 
 //make a div dissapear after some time
 function setTimer(id){
-        setTimeout(function(){$('#'+id).fadeOut();}, 7000); //we <3 jquery
+    setTimeout(function(){
+                $('#'+id).fadeOut(); 
+    }, 7000); //we <3 jquery 
+    
+    setTimeout(function(){
+                $('#'+id).remove();  //remove div after 8 seconds - has to be done after fadeout function
+    }, 8000); //we <3 jquery 
+    
 }
 
 
@@ -57,7 +64,7 @@ function setTimer(id){
 function animate(id){
     var rand = Math.round(Math.random()*3);
     if (rand == 1) document.getElementById(id).className = "bounce";
-    else if (rand == 32) document.getElementById(id).className = "pulse";
+    else if (rand == 2) document.getElementById(id).className = "pulse";
     else document.getElementById(id).className = "shake";
 }
 
