@@ -15,7 +15,5 @@ The secret code uses ASCII characters to interpret the user's input. In my case,
 For more information on how to translate your desired code to ASCII, visit: https://simple.wikipedia.org/wiki/ASCII
 
 TO DO: 
- - fix position generation of each div (reduce overflow out of screen)
- - add animations
  - add different results to inputting different codes
 
