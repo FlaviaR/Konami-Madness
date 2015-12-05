@@ -15,7 +15,6 @@ This will create a div that covers your entire screen, allowing the obnoxious im
 To define your own code: <br>
 <pre><code>&lt;specifyCode(string)&gt;
 </code></pre> 
-<br>
 <i>Note that CAPS LOCK is usually preferred for the code. It will work for both lower and upper-case code entries. 
 <br><br>
 To add an image: <br>
