@@ -2,13 +2,18 @@
 var secret = "7076658683"; //secret code -> flavs
 var input = ""; //user input
 var timer; 
+
 var img = document.createElement("img");  //our image element
-img.src = "imagens/secret/secret.png";
+img.src = "";
+
 var randImg; //keeps track of the currently selected image
 var randRot; //keeps track of the generated rotation
 var randTop; //keeps track of the top pos
 var randLeft; //keeps track of the left pos
+
 var count = 0; //a counter used for the div ids
+var imageList = []; //our image list -- contains paths
+
 var debug = false;
 var toPrint = "";
 
@@ -22,9 +27,25 @@ $(document).keyup(function(e) {
     check_input();
 });
 
+//Change the default code
+//@param code - a given string (caps lock)
+function specifyCode(code){
+    var str = "";
+    for (i = 0; i < code.length; i++){
+        str += code.charCodeAt(i);
+    }
+    secret = str;
+}
+
+//Add an image to the image array
+//@param path - the images path
+function addImages(path){
+    imageList.push(path);
+}
+
 //generates random values for the angle rotations and image position
 function randomize(){
-    randImg = Math.round(Math.random()*6);
+    randImg = Math.round(Math.random()*(imageList.length - 1)); 
     randRot = Math.round(Math.random()*80);
     if (randRot % 2 == 0) randRot*=(-1); //cw or ccw
     else if (randRot % 3 == 0) randRot = 0;
@@ -38,23 +59,17 @@ function randomize(){
 
 //We add new images depending on the generated number
 function checkResult(){
-    if (randImg == 1) img.src = "imagens/secret/secret.png";
-    if (randImg == 2) img.src = "imagens/secret/secret1.png";
-    if (randImg == 3) img.src = "imagens/secret/secret2.png";
-    if (randImg == 4) img.src = "imagens/secret/secret3.png";
-    if (randImg == 5) img.src = "imagens/secret/secret4.png";
-    if (randImg == 6) img.src = "imagens/secret/secret5.png";
-
+    img.src = imageList[randImg];
 }
 
 //make a div dissapear after some time
 function setTimer(id){
     setTimeout(function(){
-                $('#'+id).fadeOut(); 
+        $('#'+id).fadeOut(); 
     }, 7000); //we <3 jquery 
     
     setTimeout(function(){
-                $('#'+id).remove();  //remove div after 8 seconds - has to be done after fadeout function
+        $('#'+id).remove();  //remove div after 8 seconds - has to be done after fadeout function
     }, 8000); //we <3 jquery 
     
 }
