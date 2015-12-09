@@ -122,6 +122,14 @@ function check_input() {
         checkResult();
         count++;
         createDiv("#secretAppend"); //where to append images
+        
         if (debug) alert (toPrint);
     }
 }
+
+$( document ).ready(function() { //Create a div to append the images to
+        var div = document.createElement('div');
+        div.id = 'secretAppend';
+        div.className = 'secret';
+        document.getElementsByTagName('body')[0].appendChild(div);
+});
