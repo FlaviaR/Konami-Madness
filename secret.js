@@ -2,6 +2,7 @@
 var secret = "7076658683"; //secret code -> flavs
 var input = ""; //user input
 var timer; 
+var maintainDiv = 7000; //will maintain the div on the screen for 7000ms (default)
 
 var img = document.createElement("img");  //our image element
 img.src = "";
@@ -30,9 +31,10 @@ $(document).keyup(function(e) {
 //Change the default code
 //@param code - a given string (caps lock)
 function specifyCode(code){
+    var codeUpper = code.toUpperCase(); //make the given code be upper case
     var str = "";
-    for (i = 0; i < code.length; i++){
-        str += code.charCodeAt(i);
+    for (i = 0; i < codeUpper.length; i++){
+        str += codeUpper.charCodeAt(i);
     }
     secret = str;
 }
@@ -41,6 +43,12 @@ function specifyCode(code){
 //@param path - the images path
 function addImages(path){
     imageList.push(path);
+}
+
+//Set how long the image will be animated 
+//@param time - the desired amount of time in milliseconds
+function setAnimationTime(time){
+	maintainDiv = time;
 }
 
 //generates random values for the angle rotations and image position
@@ -66,11 +74,11 @@ function checkResult(){
 function setTimer(id){
     setTimeout(function(){
         $('#'+id).fadeOut(); 
-    }, 7000); //we <3 jquery 
+    }, maintainDiv); //we <3 jquery 
     
     setTimeout(function(){
         $('#'+id).remove();  //remove div after 8 seconds - has to be done after fadeout function
-    }, 8000); //we <3 jquery 
+    }, (maintainDiv + 1000)); //we <3 jquery 
     
 }
 
